@@ -131,5 +131,6 @@ h2 {
 }
 
 span.highlight {
-  background-color: #ffffd0;
+/*   background-color: #ffffd0; */
+  background-color: #e2f0d9;
 }

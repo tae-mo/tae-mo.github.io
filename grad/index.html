@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Nuvo: Neural UV Mapping">
+  <meta name="keywords" content="NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuvo: Neural UV Mapping for Unruly 3D Representations</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/video_comparison.js"></script>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏁</text></svg>">
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-1 publication-title">Nuvo: Neural UV Mapping<br/>for Unruly 3D Representations</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://pratulsrinivasan.github.io">Pratul P. Srinivasan</a>,</span>
+              <span class="author-block">
+                <a href="http://stephangarbin.com/">Stephan J. Garbin</a>,</span>
+              <span class="author-block">
+                <a href="https://dorverbin.github.io/">Dor Verbin</a>,</span>
+              <span class="author-block">
+                <a href="https://jonbarron.info">Jonathan T. Barron</a>,</span>
+              <span class="author-block">
+                <a href="https://bmild.github.io">Ben Mildenhall</a></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Google Research</span>
+            </div>
+
+            <div class="is-size-5 publication-venue">
+
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+                <span class="link-block">
+                  <a href="http://arxiv.org/abs/2312.05283" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-dark" title="Coming soon!" disabled>
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                    </a>
+                </span>
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-dark" title="Coming soon!" disabled>
+                    <span class="icon">
+                        <i class="far fa-images"></i>
+                    </span>
+                    <span>Data</span>
+                    </a>
+                  </span> -->
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="tabs-widget">
+          <div class="tabs is-centered is-toggle is-toggle-rounded">
+            <ul class="is-marginless">
+              <li class="is-active"><a>Nuvo</a></li>
+              <li><a>xatlas</a></li>
+            </ul>
+          </div>
+          <div class="tabs-content">
+            <div>
+              <video id="replay-video" controls muted preload playsinline autoplay loop width="70%">
+                <source src="./static/videos/gardenvase_ours.mp4" type="video/mp4">
+              </video>
+              <img width="25%" src="./static/images/gardenvase_normals.png"></img>
+            </div>
+            <div>
+              <video id="replay-video" controls muted preload playsinline autoplay loop width="70%">
+                <source src="./static/videos/gardenvase_cb_xatlas.mp4" type="video/mp4">
+              </video>
+              <img width="25%" src="./static/images/xatlas_normals.png"></img>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <h2 class="title is-3">Abstract</h2>
+      <div class="content has-text-justified">
+        <p>
+          Existing UV mapping algorithms are designed to operate on well-behaved meshes,
+          instead of the geometry representations produced by state-of-the-art 3D reconstruction and generation techniques.
+          As such, applying these methods to the volume densities recovered by neural radiance fields and related techniques
+          (or meshes triangulated from such fields) results in texture atlases that are too fragmented to be useful
+          for tasks such as view synthesis or appearance editing.
+          We present a UV mapping method designed to operate on geometry produced by 3D reconstruction and generation techniques.
+          Instead of computing a mapping defined on a mesh's vertices, our method Nuvo uses a neural field to represent a
+          continuous UV mapping, and optimizes it to be a valid and well-behaved mapping for just the set of visible points,
+          i.e. only points that affect the scene's appearance. We show that our model is robust to the
+          challenges posed by ill-behaved geometry, and that it produces editable UV mappings that can represent detailed appearance.
+        </p>
+      </div>
+      <img width="100%" src="./static/images/method.png"></img>
+      <p>
+        Nuvo uses a neural field to represent a given scene's UV mapping.
+        A "chart assignment" MLP c outputs probabilities for a categorical distribution over charts for any surface point x,
+        "texture coordinate" MLPs t map from 3D points x to 2D UV coordinates u, and ``surface coordinate'' MLPs s map from 2D UV coordinates to 3D points on the surface.
+        Here we visualize Nuvo's learned mappings for charts 1 and 3 in an atlas consisting of 4 charts.
+      </p>
+      <!-- / Abstract. -->
+
+    </div>
+
+    </div>
+  </section>
+
+  <hr/>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Video. -->
+      <h2 class="title is-3">Video</h2>
+      <!-- Paper video. -->
+      <div class="container is-max-desktop">
+        <!-- <h2 class="title is-3">Video</h2> -->
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/hmJiOSTDQZI?si=Xq4TWH4D9BwMmlp7"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+  <hr/>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-3">Optimization Convergence</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          Nuvo parameterizes a UV mapping as a neural field that is optimized to partition the scene into a set of charts, each representing a low-distortion mapping from a region of the scene onto a 2D square.
+          Here we're visualizing Nuvo's optimization convergence for computing UV mappings for the "Bust of Queen Nefertiti" mesh using 4, 8, or 16 charts.
+        </p>
+      </div>
+
+      <div class="content">
+        <div class="tabs-widget">
+          <div class="tabs is-centered">
+            <ul class="is-marginless">
+              <li class="is-active"><a>4 charts</a></li>
+              <li><a>8 charts</a></li>
+              <li><a>16 charts</a></li>
+            </ul>
+          </div>
+          <div class="tabs-content">
+            <div>
+              <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
+                <source src="./static/videos/nefertiti_4_opt_comb_pad.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div>
+              <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
+                <source src="./static/videos/nefertiti_8_opt_comb_pad.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div>
+              <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
+                <source src="./static/videos/nefertiti_16_opt_comb.mp4" type="video/mp4">
+              </video>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <hr/>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Appearance Editing</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          Nuvo's UV mappings enable us to use off-the-shelf 2D image editing tools to edit the appearance of generated and 3D reconstructed content.
+          Here, we're modifying mesh albedos in UV space using Adobe Firefly's generative inpainting.
+        </p>
+      </div>
+      <h5 class="title is-5">DreamFusion mesh: "A ghost eating a hamburger"</h5>
+      <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
+        <source src="./static/videos/ghost_edit_comb_flip.mp4" type="video/mp4">
+      </video>
+      <div class="columns is-mobile has-text-centered is-size-7-mobile">
+        <div class="column is-one-half">Original</div>
+        <div class="column is-one-half">Edited</div>
+      </div>
+      <h5 class="title is-5">Zip-NeRF mesh: gardenvase</h5>
+      <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
+        <source src="./static/videos/gardenvase_edit_comb.mp4" type="video/mp4">
+      </video>
+      <div class="columns is-mobile has-text-centered is-size-7-mobile">
+        <div class="column is-one-half">Original</div>
+        <div class="column is-one-half">Edited</div>
+      </div>
+      <h5 class="title is-5">Zip-NeRF mesh: basil</h4>
+      <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
+        <source src="./static/videos/basil_edit_comb.mp4" type="video/mp4">
+      </video>
+      <div class="columns is-mobile has-text-centered is-size-7-mobile">
+        <div class="column is-one-half">Original</div>
+        <div class="column is-one-half">Edited</div>
+      </div>
+    </div>
+  </section>
+
+  <hr/>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Acknowledgements</h2>
+      <p>
+        Thanks to <a href="http://szeliski.org/">Rick Szeliski</a> and <a href="https://phogzone.com/">Peter Hedman</a>
+        for feedback and comments.
+      </p>
+      <p>
+        The "Bust of Queen Nefertiti" mesh shown above was downloaded from <a href="https://github.com/alecjacobson/common-3d-test-models">Alec Jacobson's collection of 3D models</a>, and was created from a 3D scan of Thutmose's statue, located in the Neues Museum in Berlin.
+          The "Hydria Apothecary Vase" mesh seen in our video (downloaded from <a href="https://sketchfab.com/3d-models/hydria-apothecary-vase-7d6938c0c0b54b06a0210a982a73023e">Sketchfab</a>) is from the
+            Pharmacy Museum in the Jagiellonian University Medical College of Kraków, Poland, digitized by the Regional Digitalisation Lab of the
+            Malopolska Institute of Culture.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{srinivasan2023nuvo,
+  author    = {Pratul P. Srinivasan and Stephan J. Garbin and Dor Verbin and Jonathan T. Barron and Ben Mildenhall},
+  title     = {Nuvo: Neural UV Mapping for Unruly 3D Representations},
+  journal = {arXiv},
+  year      = {2023},
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="http://arxiv.org/abs/2312.05283">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <!-- <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a> -->
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website design comes from <a href="https://keunhong.com/">Keunhong Park's</a> <a href="https://camp-nerf.github.io/">CamP project page</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

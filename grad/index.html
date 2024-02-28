@@ -145,7 +145,7 @@
             There have been significant advancements in anomaly detection in an unsupervised manner, where only normal images are available for training. Several recent methods aim to detect anomalies based on a memory, comparing the input and the directly stored normal features (or trained features with normal images).
             However, such memory-based approaches operate on a discrete feature space implemented by the nearest neighbor or attention mechanism, suffering from poor generalization or an identity shortcut issue outputting the same as input, respectively.
             Furthermore, the majority of existing methods are designed to detect single-class anomalies, resulting in unsatisfactory performance when presented with multiple classes of objects.
-            To tackle all of the above challenges, we propose GRAD, a novel anomaly detection method for representing normal features within a "continuous" feature space, enabled by transforming spatial features into coordinates and mapping them to continuous grids. 
+            To tackle all of the above challenges, we propose GRAD, a novel anomaly detection method for representing normal features within a ``continuous'' feature space, enabled by transforming spatial features into coordinates and mapping them to continuous grids. 
             Furthermore, we carefully design the grids tailored for anomaly detection, representing both local and global normal features and fusing them effectively.
             Our extensive experiments demonstrate that GRAD successfully generalizes the normal features and mitigates the identity shortcut, furthermore, GRAD effectively handles diverse classes in a single model thanks to the high-granularity global representation.
             In an evaluation using the MVTec AD dataset, GRAD significantly outperforms the previous state-of-the-art method by reducing 65.0\% of the error for multi-class unified anomaly detection.
@@ -188,49 +188,27 @@
 
   <section class="section">
     <div class="container is-max-desktop">
-
-      <h2 class="title is-3">Optimization Convergence</h2>
-
-      <div class="content has-text-justified">
-        <p>
-          Nuvo parameterizes a UV mapping as a neural field that is optimized to partition the scene into a set of charts, each representing a low-distortion mapping from a region of the scene onto a 2D square.
-          Here we're visualizing Nuvo's optimization convergence for computing UV mappings for the "Bust of Queen Nefertiti" mesh using 4, 8, or 16 charts.
-        </p>
-      </div>
-
-      <div class="content">
-        <div class="tabs-widget">
-          <div class="tabs is-centered">
-            <ul class="is-marginless">
-              <li class="is-active"><a>4 charts</a></li>
-              <li><a>8 charts</a></li>
-              <li><a>16 charts</a></li>
-            </ul>
-          </div>
-          <div class="tabs-content">
-            <div>
-              <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
-                <source src="./static/videos/nefertiti_4_opt_comb_pad.mp4" type="video/mp4">
-              </video>
-            </div>
-
-            <div>
-              <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
-                <source src="./static/videos/nefertiti_8_opt_comb_pad.mp4" type="video/mp4">
-              </video>
-            </div>
-
-            <div>
-              <video id="replay-video" controls muted preload playsinline autoplay loop width="100%">
-                <source src="./static/videos/nefertiti_16_opt_comb.mp4" type="video/mp4">
-              </video>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
+      <h2 class="title is-3">Detection & Localization Performance</h2>
+      <table>
+          | Class      | US                 | PaDiM              | MKD                | DRAEM              | RD4AD              | PatchCore          | UniAD              | HVQ-Trans       | GRAD (Ours)             |
+          |:----------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:---------------:|:-----------------------:|
+          | Bottle     | 84.0 / 99.0 | 97.9 / 99.9 | 98.7 / 99.4 | 97.5 / 99.2 | 98.7 / 100  | 100 / 100   | 99.7 / 100  | 100 / -  | 100±0.00 / 100   |
+          | Cable      | 60.0 / 86.2 | 70.9 / 92.7 | 78.2 / 89.2 | 57.8 / 91.8 | 85.0 / 95.0 | 99.7 / 99.4 | 95.2 / 97.6 | 99.0 / - | 99.5±0.15 / 99.8 |
+          | Capsule    | 57.6 / 86.1 | 73.4 / 91.3 | 68.3 / 80.5 | 65.3 / 98.5 | 95.5 / 96.3 | 90.9 / 97.8 | 86.9 / 85.3 | 95.4 / - | 96.9±0.37 / 97.9 |
+          | Hazelnut   | 95.8 / 93.1 | 85.5 / 92.0 | 97.1 / 98.4 | 93.7 / 100  | 87.1 / 99.9 | 100 / 100   | 99.8 / 99.9 | 100 / -  | 99.9±0.09 / 100  |
+          | Metal Nut  | 62.7 / 82.0 | 88.0 / 98.7 | 64.9 / 73.6 | 72.8 / 98.7 | 99.4 / 100  | 99.9 / 100  | 99.2 / 99.0 | 99.9 / - | 99.9±0.08 / 99.9 |
+          | Pill       | 56.1 / 87.9 | 68.8 / 93.3 | 79.7 / 82.7 | 82.2 / 98.9 | 52.6 / 96.6 | 96.9 / 96.0 | 93.7 / 88.3 | 95.8 / - | 97.8±0.37 / 98.7 |
+          | Screw      | 66.9 / 54.9 | 56.9 / 85.8 | 75.6 / 83.3 | 92 / 93.9   | 97.3 / 97.0 | 90.1 / 97.0 | 87.5 / 91.9 | 95.6 / - | 97.5±0.43 / 99.0 |
+          | Toothbrush | 57.8 / 95.3 | 95.3 / 96.1 | 75.3 / 92.2 | 90.6 / 100  | 99.4 / 99.5 | 100 / 99.7  | 94.2 / 95.0 | 93.6 / - | 99.3±0.13 / 97.2 |
+          | Transistor | 61.0 / 81.8 | 86.6 / 97.4 | 73.4 / 85.6 | 74.8 / 93.1 | 92.4 / 96.7 | 99.7 / 100  | 99.8 / 100  | 99.7 / - | 99.9±0.09 / 99.9 |
+          | Zipper     | 78.6 / 91.9 | 79.7 / 90.3 | 87.4 / 93.2 | 98.8 / 100  | 99.6 / 98.5 | 94.7 / 99.5 | 95.8 / 96.7 | 97.9 / - | 99.2±0.15 / 99.2 |
+          | Carpet     | 86.6 / 91.6 | 93.8 / 99.8 | 69.8 / 79.3 | 98.0 / 97.0 | 97.1 / 98.9 | 97.1 / 98.7 | 99.8 / 99.9 | 99.9 / - | 100±0.03 / 100   |
+          | Grid       | 69.2 / 81.0 | 73.9 / 96.7 | 83.8 / 78.0 | 99.3 / 99.9 | 99.7 / 100  | 96.3 / 97.9 | 98.2 / 98.5 | 97.0 / - | 100±0.0 / 100    |
+          | Leather    | 97.2 / 88.2 | 99.9 / 100  | 93.6 / 95.1 | 98.7 / 100  | 100 / 100   | 100 / 100   | 100 / 100   | 100 / -  | 100±0.00 / 100   |
+          | Tile       | 93.7 / 99.1 | 93.3 / 98.1 | 89.5 / 91.6 | 99.8 / 99.6 | 97.5 / 99.3 | 99.0 / 98.9 | 99.3 / 99.0 | 99.2 / - | 100±0.00 / 100   |
+          | Wood       | 90.6 / 97.7 | 98.4 / 99.2 | 93.4 / 94.3 | 99.8 / 99.1 | 99.2 / 99.2 | 99.5 / 99.0 | 98.6 / 97.9 | 97.2 / - | 99.4±0.13 / 99.7 |
+          | Mean       | 74.5 / 87.7 | 84.2 / 95.5 | 81.9 / 87.8 | 88.1 / 98.0 | 93.4 / 98.5 | 97.6 / 99.0 | 96.5 / 96.6 | 98.0 / - | 99.3±0.14 / 99.4 |
+      </table>
     </div>
   </section>
 

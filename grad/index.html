@@ -8,7 +8,7 @@
     content="Nuvo: Neural UV Mapping">
   <meta name="keywords" content="NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nuvo: Neural UV Mapping for Unruly 3D Representations</title>
+  <title>Grid-Based Continuous Normal Representation for Anomaly Detection</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -38,22 +38,22 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
 
-            <h1 class="title is-1 publication-title">Nuvo: Neural UV Mapping<br/>for Unruly 3D Representations</h1>
+            <h1 class="title is-1 publication-title">Grid-Based Continuous Normal Representation for Anomaly Detection</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://pratulsrinivasan.github.io">Pratul P. Srinivasan</a>,</span>
+                <a href="https://maincold2.github.io">Joo Chan Lee*</a>,</span>
               <span class="author-block">
-                <a href="http://stephangarbin.com/">Stephan J. Garbin</a>,</span>
+                <a href="https://maincold2.github.io">Taejune Kim*</a>,</span>
               <span class="author-block">
-                <a href="https://dorverbin.github.io/">Dor Verbin</a>,</span>
+                <a href="https://silverbottlep.github.io/">Eunbyung Park</a>,</span>
               <span class="author-block">
-                <a href="https://jonbarron.info">Jonathan T. Barron</a>,</span>
+                <a href="https://dash-lab.github.io/">Simon S. Woo</a>,</span>
               <span class="author-block">
-                <a href="https://bmild.github.io">Ben Mildenhall</a></span>
+                <a href="https://iris.skku.edu/">Jong Hwan Ko</a></span>
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block">Google Research</span>
+              <span class="author-block">Sungkyunkwan University</span>
             </div>
 
             <div class="is-size-5 publication-venue">
@@ -111,7 +111,7 @@
         <div class="tabs-widget">
           <div class="tabs is-centered is-toggle is-toggle-rounded">
             <ul class="is-marginless">
-              <li class="is-active"><a>Nuvo</a></li>
+              <li class="is-active"><a>GRAD</a></li>
               <li><a>xatlas</a></li>
             </ul>
           </div>
@@ -142,16 +142,13 @@
       <h2 class="title is-3">Abstract</h2>
       <div class="content has-text-justified">
         <p>
-          Existing UV mapping algorithms are designed to operate on well-behaved meshes,
-          instead of the geometry representations produced by state-of-the-art 3D reconstruction and generation techniques.
-          As such, applying these methods to the volume densities recovered by neural radiance fields and related techniques
-          (or meshes triangulated from such fields) results in texture atlases that are too fragmented to be useful
-          for tasks such as view synthesis or appearance editing.
-          We present a UV mapping method designed to operate on geometry produced by 3D reconstruction and generation techniques.
-          Instead of computing a mapping defined on a mesh's vertices, our method Nuvo uses a neural field to represent a
-          continuous UV mapping, and optimizes it to be a valid and well-behaved mapping for just the set of visible points,
-          i.e. only points that affect the scene's appearance. We show that our model is robust to the
-          challenges posed by ill-behaved geometry, and that it produces editable UV mappings that can represent detailed appearance.
+            There have been significant advancements in anomaly detection in an unsupervised manner, where only normal images are available for training. Several recent methods aim to detect anomalies based on a memory, comparing the input and the directly stored normal features (or trained features with normal images).
+            However, such memory-based approaches operate on a discrete feature space implemented by the nearest neighbor or attention mechanism, suffering from poor generalization or an identity shortcut issue outputting the same as input, respectively.
+            Furthermore, the majority of existing methods are designed to detect single-class anomalies, resulting in unsatisfactory performance when presented with multiple classes of objects.
+            To tackle all of the above challenges, we propose GRAD, a novel anomaly detection method for representing normal features within a "continuous" feature space, enabled by transforming spatial features into coordinates and mapping them to continuous grids. 
+            Furthermore, we carefully design the grids tailored for anomaly detection, representing both local and global normal features and fusing them effectively.
+            Our extensive experiments demonstrate that GRAD successfully generalizes the normal features and mitigates the identity shortcut, furthermore, GRAD effectively handles diverse classes in a single model thanks to the high-granularity global representation.
+            In an evaluation using the MVTec AD dataset, GRAD significantly outperforms the previous state-of-the-art method by reducing 65.0\% of the error for multi-class unified anomaly detection.
         </p>
       </div>
       <img width="100%" src="./static/images/method.png"></img>

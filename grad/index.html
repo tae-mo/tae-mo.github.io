@@ -98,12 +98,14 @@
       <h2 class="title is-3">Main Idea</h2>
       <img width="100%" src="./static/images/demo.png"></img>
     </div>
+    <div class="content has-text-justified">
     Recent memory-based approaches operate on a discrete feature space implemented by the nearest neighbor or attention mechanism, suffering from (a) poor generalization or (b) an identity shortcut issue outputting the same as input.
     We propose a (c) grid-based <b>continous feature space</b>, which can be a effective solution for resolving the issues.
     <br>
     When a normal patch is fed, even though there is no exact match in the training patches, a corresponding normal feature can be represented by interpolating near normal features (Well-generalization).
     As the grid has never been exposed to abnormal features during training, it is unable to represent abnormal features by interpolating nearby normal features.
     This is the core idea of how we can effectively resolve the identity shortcut issue frequently found in the existing methods that aggregate numerous features based on similarities.
+    </div>
   </section>
 
   <hr/>
@@ -139,9 +141,11 @@
       <h2 class="title is-3">Efficacy of Continuous Space</h2>
       <img width="100%" src="./static/images/grid_feature.png"></img>
     </div>
+    <div class="content has-text-justified">
     The sampled features (from the local and global grids) with near coordinates share similar characteristics whether the input image is normal or not.
     Furthermore, the fused normal representations of both normal and abnormal inputs are reconstructed into normal images.
     This result demonstrates that the continuous feature space efficiently tackles the two major challenges in discrete feature space: weak generalization and IS. 
+    </div>
   </section>
 
   <hr/>
@@ -152,7 +156,9 @@
       <img width="100%" src="./static/images/qual.png"></img>
       <br>
     </div>
+    <div class="content has-text-justified">
     GRAD achieves the best performance for unified anomaly detection.
+    </div>
   </section>
 
   <hr/>

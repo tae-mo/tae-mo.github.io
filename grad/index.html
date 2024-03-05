@@ -121,15 +121,15 @@
             There have been significant advancements in anomaly detection in an unsupervised manner, where only normal images are available for training. Several recent methods aim to detect anomalies based on a memory, comparing the input and the directly stored normal features (or trained features with normal images).
             However, such memory-based approaches operate on a discrete feature space implemented by the nearest neighbor or attention mechanism, suffering from poor generalization or an identity shortcut issue outputting the same as input, respectively.
             Furthermore, the majority of existing methods are designed to detect single-class anomalies, resulting in unsatisfactory performance when presented with multiple classes of objects.
-            To tackle all of the above challenges, we propose GRAD, a novel anomaly detection method for representing normal features within a "continuous" feature space, enabled by transforming spatial features into coordinates and mapping them to continuous grids. 
+            To tackle all of the above challenges, we propose CRAD, a novel anomaly detection method for representing normal features within a "continuous" memory, enabled by transforming spatial features into coordinates and mapping them to continuous grids. 
             Furthermore, we carefully design the grids tailored for anomaly detection, representing both local and global normal features and fusing them effectively.
-            Our extensive experiments demonstrate that GRAD successfully generalizes the normal features and mitigates the identity shortcut, furthermore, GRAD effectively handles diverse classes in a single model thanks to the high-granularity global representation.
-            In an evaluation using the MVTec AD dataset, GRAD significantly outperforms the previous state-of-the-art method by reducing 65.0% of the error for multi-class unified anomaly detection.
+            Our extensive experiments demonstrate that CRAD successfully generalizes the normal features and mitigates the identity shortcut, furthermore, CRAD effectively handles diverse classes in a single model thanks to the high-granularity global representation.
+            In an evaluation using the MVTec AD dataset, CRAD significantly outperforms the previous state-of-the-art method by reducing 65.0% of the error for multi-class unified anomaly detection.
         </p>
       </div>
       <img width="100%" src="./static/images/architecture.png"></img>
       <p>
-        (a) The detailed architecture of GRAD and (b) visualization of coordinate jittering. The input x is firstly transformed into pixel-wise and feature-wise coordinates. After the normal features are sampled from local and global representations, they are fused by CNN blocks. The final reconstruction is acquired through the proposed feature refinement process.
+        (a) The detailed architecture of CRAD and (b) visualization of coordinate jittering. The input x is firstly transformed into pixel-wise and feature-wise coordinates. After the normal features are sampled from local and global representations, they are fused by CNN blocks. The final reconstruction is acquired through the proposed feature refinement process.
       </p>
       <!-- / Abstract. -->
     </div>
